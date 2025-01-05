@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: gender-reveal
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gender-reveal
+  namespace: gender-reveal
+spec:
+  replicas: 1  # Number of pods you want to run
+  selector:
+    matchLabels:
+      app: gender-reveal
+  template:
+    metadata:
+      labels:
+        app: gender-reveal
+    spec:
+      containers:
+        - name: gender-reveal
+          image: marceloaba/gender_reveal:python3.10-v1.0
+          ports:
+            - containerPort: 5001
+          env:
+            - name: FLASK_PORT
+              value: "5001"
+            - name: TZ
+              value: "America/Toronto"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gender-reveal-service
+  namespace: gender-reveal
+spec:
+  selector:
+    app: gender-reveal
+  ports:
+    - protocol: TCP
+      port: 5001        # Port the service exposes internally
+      targetPort: 5001   # Port the application listens on in the container
+      nodePort: 30003    # Port on the node that will expose the service externally (NodePort)
+  type: NodePort

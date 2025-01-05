@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gender Reveal Party</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url("{{ url_for('static', filename='images/background.png') }}") no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+        }
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center; /* Horizontal centering */
+            align-items: center;     /* Vertical centering */
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            margin: auto;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            color: #d81b60;
+        }
+        .images-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .image-container {
+            text-align: center;
+        }
+        .image-container img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+        }
+        .votes {
+            margin-top: 5px;
+            font-size: 14px;
+            color: #333;
+        }
+        form {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: left;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        button {
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        button:hover {
+            background-color: #d81b60;
+        }
+        ul {
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+<!--    <h1>Welcome to the Gender Reveal Party</h1>-->
+    <div class="container">
+        <div class="images-row">
+            <div class="image-container">
+                <img src="{{ url_for('static', filename='images/nathaliamarcelo.jpg') }}" alt="Nathalia & Marcelo">
+                <p class="votes">Nathalia & Marcelo</p>
+<!--                <p class="votes">Boy: {{ vote_counts['woman1_boy'] }}, Girl: {{ vote_counts['woman1_girl'] }}</p>-->
+            </div>
+            <div class="image-container">
+                <img src="{{ url_for('static', filename='images/greycewinter.jpg') }}" alt="Greyce & Winter">
+                <p class="votes">Greyce & Winter</p>
+<!--                <p class="votes">Boy: {{ vote_counts['woman2_boy'] }}, Girl: {{ vote_counts['woman2_girl'] }}</p>-->
+            </div>
+        </div>
+
+        <!-- Flash messages -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li style="color: green;">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <!-- Form -->
+        <p>Digite seu nome e escolha o sexo dos bebês:</p>
+        <form action="/" method="post">
+            <label for="name">Seu Nome:</label>
+            <input type="text" name="name" required>
+
+            <p>Deixe sua mensagem (optional):</p>
+            <textarea name="message" rows="4" cols="50"></textarea>
+            <p>Nathalia & Marcelo (optional)</p>
+            <input type="radio" name="woman1" value="Boy"> Boy
+            <input type="radio" name="woman1" value="Girl"> Girl
+
+            <p>Winter & Grace (optional)</p>
+            <input type="radio" name="woman2" value="Boy"> Boy
+            <input type="radio" name="woman2" value="Girl"> Girl
+
+            <button type="submit">Vote</button>
+        </form>
+    </div>
+</body>
+</html>

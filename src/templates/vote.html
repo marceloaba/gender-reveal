@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vote Results - Gender Reveal Party</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url("{{ url_for('static', filename='images/background.png') }}") no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 1000px;
+            margin: auto;
+            margin-top: 250px
+        }
+        h1 {
+            color: #d81b60;
+        }
+        .vote-section {
+            margin-bottom: 30px;
+        }
+        .vote-section h2 {
+            color: #333;
+        }
+        .vote-details {
+            font-size: 16px;
+            margin: 10px;
+            text-align: left;
+        }
+        .guest-info {
+            margin: 10px 0;
+            padding: 10px;
+            background: rgb(101, 182, 232);
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Vote Results</h1>
+
+        <!-- Display Guests' Votes and Messages -->
+        <div class="vote-section">
+            <h2>Guest Votes</h2>
+            {% for guest in guests_and_votes %}
+                <div class="guest-info">
+                    <p><strong>{{ guest[0] }}</strong></p>
+                    <p><i>"{{ guest[1] }}"</i></p>
+                    <p>Nathalia & Marcelo: {{ guest[2] if guest[2] else 'No vote' }}</p>
+                    <p>Winter & Greyce: {{ guest[3] if guest[3] else 'No vote' }}</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Display Total Votes for Boy and Girl -->
+        <div class="vote-section">
+            <h2>Total Votes</h2>
+            <p><strong>Nathalia & Marcelo</strong></p>
+            <p>Boy: {{ vote_counts['woman1_boy'] }} | Girl: {{ vote_counts['woman1_girl'] }}</p>
+            <p><strong>Greyce & Winter</strong></p>
+            <p>Boy: {{ vote_counts['woman2_boy'] }} | Girl: {{ vote_counts['woman2_girl'] }}</p>
+        </div>
+
+        <div class="vote-section">
+            <p><a href="{{ url_for('home') }}">Back to Home</a></p>
+        </div>
+    </div>
+
+</body>
+</html>

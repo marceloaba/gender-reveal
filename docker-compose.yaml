@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  gender_reveal:
+    container_name: gender_reveal
+    image: marceloaba/gender_reveal:python3.10-v1.0
+    pull_policy: always
+    restart: unless-stopped
+    ports:
+      - "5001:5001"
+    environment:
+      FLASK_PORT: "5001"
+      TZ: "America/Toronto"
