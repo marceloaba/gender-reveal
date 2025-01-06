@@ -170,3 +170,9 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 *.db
+/.idea/.gitignore
+/.idea/gender-reveal.iml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/vcs.xml

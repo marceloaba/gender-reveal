@@ -4,7 +4,7 @@ FROM python:3.10.0rc2-slim
 WORKDIR /app
 
 # Install any needed packages specified in requirements.txt
-COPY requirements.txt /app/
+COPY src/requirements.txt /app/
 RUN pip3 install --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt
 
