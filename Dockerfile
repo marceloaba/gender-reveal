@@ -9,7 +9,10 @@ RUN pip3 install --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt
 
 # Copy the current directory contents into the container at /app
-COPY src/ /app/
+RUN mkdir data
+COPY src/static/ /app/static/
+COPY src/templates /app/templates/
+COPY src/main.py /app/
 
 # Run the application
 CMD ["python", "main.py"]

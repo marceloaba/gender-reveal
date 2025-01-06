@@ -10,3 +10,5 @@ services:
     environment:
       FLASK_PORT: "5001"
       TZ: "America/Toronto"
+    volumes:
+      - ./src/data:/app/data:rw

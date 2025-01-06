@@ -7,7 +7,7 @@ app.secret_key = 'your_secret_key'
 
 
 def init_db():
-    with sqlite3.connect("./gender_reveal.db") as conn:
+    with sqlite3.connect("./data/gender_reveal.db") as conn:
         cursor = conn.cursor()
         cursor.execute('''CREATE TABLE IF NOT EXISTS guests (
                             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -23,7 +23,7 @@ def init_db():
 
 
 def get_vote_counts():
-    with sqlite3.connect("./gender_reveal.db") as conn:
+    with sqlite3.connect("./data/gender_reveal.db") as conn:
         cursor = conn.cursor()
 
         # Counting votes for Woman 1 (Nathalia & Marcelo)
@@ -47,7 +47,7 @@ def get_vote_counts():
 
 
 def get_guests_and_votes():
-    with sqlite3.connect("./gender_reveal.db") as conn:
+    with sqlite3.connect("./data/gender_reveal.db") as conn:
         cursor = conn.cursor()
         cursor.execute('''SELECT guests.name, guests.message, votes.woman1, votes.woman2
                           FROM guests
@@ -67,7 +67,7 @@ def home():
         woman1_vote = request.form.get('woman1')
         woman2_vote = request.form.get('woman2')
 
-        with sqlite3.connect("./gender_reveal.db") as conn:
+        with sqlite3.connect("./data/gender_reveal.db") as conn:
             cursor = conn.cursor()
             cursor.execute("INSERT INTO guests (name, message) VALUES (?, ?)", (name, message))
             if woman1_vote or woman2_vote:
