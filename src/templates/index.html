@@ -41,6 +41,8 @@
             width: 150px;
             height: 150px;
             border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
         }
         .votes {
             margin-top: 5px;
@@ -87,7 +89,7 @@
             </div>
             <div class="image-container">
                 <img src="{{ url_for('static', filename='images/greycewinter.jpg') }}" alt="Greyce & Winter">
-                <p class="votes">Greyce & Winter</p>
+                <p class="votes">Greyce & Cris</p>
 <!--                <p class="votes">Boy: {{ vote_counts['woman2_boy'] }}, Girl: {{ vote_counts['woman2_girl'] }}</p>-->
             </div>
         </div>
@@ -115,7 +117,7 @@
             <input type="radio" name="woman1" value="Boy"> Boy
             <input type="radio" name="woman1" value="Girl"> Girl
 
-            <p>Winter & Grace (optional)</p>
+            <p>Greyce & Cris (optional)</p>
             <input type="radio" name="woman2" value="Boy"> Boy
             <input type="radio" name="woman2" value="Girl"> Girl
 
